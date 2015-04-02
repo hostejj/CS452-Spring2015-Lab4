@@ -1,1 +1,7 @@
-name, date, description
+Johnathon Hoste 4/1/15
+
+I created a custom png for a texture named lab4texture.png for the assignment.
+I removed the lighting from my lab three for this assignment.
+In doing this assignment I struggled with properly mapping the texture coordinated to the faces that I
+was trying to display them on. Is there a way to shrink and grow the size of a texture in js, or is
+the size of a texture permenant on load.

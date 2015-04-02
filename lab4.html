@@ -1,18 +1,38 @@
-+<!DOCTYPE html>
+<!DOCTYPE html>
+<!-- Johnathon Hoste, 4/1/2015, Lab 4 -->
 <html>
 <head>
-
 <script id="vertex-shader" type="x-shader/x-vertex">
-attribute vec4 vPosition;
-void main() {
-  gl_Position = vPosition;
+attribute  vec4 vPosition;
+attribute  vec4 vColor;
+attribute  vec2 vTextureCoord;
+
+varying vec4 fColor;
+
+uniform mat4 mvMatrix;
+uniform mat4 pMatrix;
+
+varying highp vec2 fTextureCoord;
+
+void main()
+{
+    gl_Position = pMatrix * mvMatrix * vPosition;
+    fColor = vColor;
+	fTextureCoord = vTextureCoord;
 }
 </script>
 
 <script id="fragment-shader" type="x-shader/x-fragment">
 precision mediump float;
-void main() {
-  gl_FragColor = vec4( 1.0, 1.0, 1.0, 1.0 );
+varying vec2 fTextureCoord;
+varying vec4 fColor;
+
+uniform sampler2D texture;
+
+void
+main()
+{
+    gl_FragColor = fColor * texture2D( texture, fTextureCoord );
 }
 </script>
 
@@ -21,9 +41,11 @@ void main() {
 <script type="text/javascript" src="../Common/MV.js"></script>
 <script type="text/javascript" src="lab4.js"></script>
 </head>
+
 <body>
 <canvas id="gl-canvas" width="512" height="512">
 Oops ... your browser doesn't support the HTML5 canvas element
 </canvas>
-+</body>
-+</html>
+<img id = "texImage" src = "lab4texture.png" hidden></img>
+</body>
+</html>
